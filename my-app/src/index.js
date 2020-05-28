@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.css';
 import 'semantic-ui-css/semantic.min.css';
-import { Container, Header } from 'semantic-ui-react';
+import { Container, Header, Menu, Icon, Dropdown } from 'semantic-ui-react';
 
 class TopMenu extends React.Component {
   render() {
