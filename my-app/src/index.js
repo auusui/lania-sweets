@@ -2,51 +2,103 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.css';
 import 'semantic-ui-css/semantic.min.css';
-import { Container, Header, Menu, Icon, Dropdown } from 'semantic-ui-react';
+import logo from './logo.png';
+import dragonfly from './dragonFly.png';
+import instagram from './instagram.JPG';
+import { Container, Button, Header, Menu, Dropdown, Icon, Grid, List, Image, Input } from 'semantic-ui-react';
 
 class TopMenu extends React.Component {
   render() {
     return (
         <Menu borderless className="topmenu">
           <Container>
-            <Menu.Item fitted><Icon name="facebook f" /></Menu.Item>
-            <Menu.Item fitted><Icon name="twitter" /></Menu.Item>
-            <Menu.Item fitted><Icon name="pinterest" /></Menu.Item>
-            <Menu.Item fitted><Icon name="instagram" /></Menu.Item>
-            <Menu.Item fitted position="right"><Icon name="home" /></Menu.Item>
-            <Menu.Item fitted><Icon name="search" /></Menu.Item>
-            <Menu.Item fitted><Icon name="user" /></Menu.Item>
-            <Dropdown item text="MY CART 0" icon="shop">
-              <Dropdown.Menu>
-                <Dropdown.Item>My cart is currently empty.</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            <Menu.Item>
+              <Image size="mini" src={dragonfly}/>
+              <span className="header-name" style={{ fontWeight: 800, fontSize: '24px'}}>Lānia Sweets Bakery</span>
+            </Menu.Item>
+            <Menu.Item position="right"><Icon name="home" /></Menu.Item>
+            <Menu.Item>
+              <Button icon src={instagram}>
+                <Icon name='instagram'/>
+              </Button>
+            </Menu.Item>
+            <Menu.Item>
+              <Input
+                  icon={{ name: 'search', circular: true, link: true }}
+                  placeholder='Search...'>
+              </Input>
+            </Menu.Item>
           </Container>
         </Menu>
     )
   }
 }
 
-class IslandSnowLogo extends React.Component {
+class LaniaLogo extends React.Component {
   render() {
     return (
-        <Header as="h1">IslandSnowLogo</Header>
+        <Image size="medium" centered src={logo}/>
     )
   }
 }
 
 class MiddleMenu extends React.Component {
+  state = { activeItem: 'home' };
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
   render() {
+    const { activeItem } = this.state;
+
     return (
-        <Header as="h1">MiddleMenu</Header>
+        <Menu position='center' inverted borderless className="middlemenu">
+          <Dropdown item text="Sweets"
+                    name='special'
+                    active={activeItem === 'sweets'}
+                    onClick={this.handleItemClick}>
+            <Dropdown.Menu>
+              <Dropdown.Item>Scones</Dropdown.Item>
+              <Dropdown.Item>Pies</Dropdown.Item>
+              <Dropdown.Item>Chocolates</Dropdown.Item>
+              <Dropdown.Item>Cookies</Dropdown.Item>
+              <Dropdown.Item>Muffins/Cupcakes</Dropdown.Item>
+              <Dropdown.Item>Doughs</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+          <Dropdown item text="Special Sweets"
+                    name='special'
+                    active={activeItem === 'special'}
+                    onClick={this.handleItemClick}>
+            <Dropdown.Menu>
+              <Dropdown.Item>Gluten-Free</Dropdown.Item>
+              <Dropdown.Item>Refined Sugar-Free</Dropdown.Item>
+              <Dropdown.Item>Vegan</Dropdown.Item>
+              <Dropdown.Item>Make Your Own</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+          <Menu.Item
+            name='promotions'
+            active={activeItem === 'promotions'}
+            onClick={this.handleItemClick}/>
+          <Menu.Item
+              name='my story'
+              active={activeItem === 'my story'}
+              onClick={this.handleItemClick}/>
+          <Menu.Item
+              name='contact us'
+              active={activeItem === 'contact us'}
+              onClick={this.handleItemClick}/>
+        </Menu>
     )
   }
 }
 
-class FullWidthImage extends React.Component {
+class MiddleContents extends React.Component {
   render() {
     return (
-        <Header as="h1">FullWidthImage</Header>
+      <div className="middle-contents">
+        <Header as="h1" size="large">My treats will lānia your heart and stomach</Header>
+      </div>
     )
   }
 }
@@ -54,26 +106,36 @@ class FullWidthImage extends React.Component {
 class FooterMenu extends React.Component {
   render() {
     return (
-        <Header as="h1">FooterMenu</Header>
+        <div className="footer-background">
+        <Grid container>
+          <Grid.Row columns="one" centered>
+            <List>
+              <List.Item>(c) 2020 Lānia Sweets</List.Item>
+              <List.Item>Treats made by Aubrie Usui</List.Item>
+              <List.Item>Baked with Love</List.Item>
+            </List>
+          </Grid.Row>
+        </Grid>
+        </div>
     )
   }
 }
 
-class IslandSnow extends React.Component {
+class LaniaSweets extends React.Component {
 
   render() {
     return (
         <div>
           <TopMenu/>
-          <IslandSnowLogo/>
+          <LaniaLogo/>
           <MiddleMenu/>
-          <FullWidthImage/>
+          <MiddleContents/>
           <FooterMenu/>
         </div>
     );
   }
 }
 
-ReactDOM.render(<IslandSnow/>, document.getElementById('root'));
+ReactDOM.render(<LaniaSweets/>, document.getElementById('root'));
 
 
