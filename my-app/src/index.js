@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.css';
 import 'semantic-ui-css/semantic.min.css';
+import { NavLink } from 'react-router-dom';
 import logo from './logo.png';
 import dragonfly from './dragonFly.png';
-import instagram from './instagram.JPG';
 import { Container, Button, Header, Menu, Dropdown, Icon, Grid, List, Image, Input } from 'semantic-ui-react';
 
 class TopMenu extends React.Component {
@@ -12,13 +12,17 @@ class TopMenu extends React.Component {
     return (
         <Menu borderless className="topmenu">
           <Container>
-            <Menu.Item>
+            <Menu.Item as={NavLink} activeClassName="" exact to="/">
               <Image size="mini" src={dragonfly}/>
               <span className="header-name" style={{ fontWeight: 800, fontSize: '24px'}}>Lānia Sweets Bakery</span>
             </Menu.Item>
-            <Menu.Item position="right"><Icon name="home" /></Menu.Item>
-            <Menu.Item>
-              <Button icon OnCl>
+            <Menu.Item as={NavLink} activeClassName="active" exact to="/home" key='home' position="right">
+              <Button icon>
+                <Icon name="home"/>
+              </Button>
+            </Menu.Item>
+            <Menu.Item as={NavLink} activeClassName="active" exact to="/insta" key='insta'>
+              <Button icon>
                 <Icon name='instagram'/>
               </Button>
             </Menu.Item>
@@ -63,6 +67,7 @@ class MiddleMenu extends React.Component {
               <Dropdown.Item>Cookies</Dropdown.Item>
               <Dropdown.Item>Muffins/Cupcakes</Dropdown.Item>
               <Dropdown.Item>Doughs</Dropdown.Item>
+              <Dropdown.Item>Cakes</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           <Dropdown item text="Special Sweets"
@@ -73,6 +78,8 @@ class MiddleMenu extends React.Component {
               <Dropdown.Item>Gluten-Free</Dropdown.Item>
               <Dropdown.Item>Refined Sugar-Free</Dropdown.Item>
               <Dropdown.Item>Vegan</Dropdown.Item>
+              <Dropdown.Item>Examples</Dropdown.Item>
+              <Dropdown.Item>Athletes</Dropdown.Item>
               <Dropdown.Item>Make Your Own</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
