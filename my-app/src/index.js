@@ -18,7 +18,7 @@ class TopMenu extends React.Component {
             </Menu.Item>
             <Menu.Item position="right"><Icon name="home" /></Menu.Item>
             <Menu.Item>
-              <Button icon src={instagram}>
+              <Button icon OnClick="window.location.href={instagram}">
                 <Icon name='instagram'/>
               </Button>
             </Menu.Item>
